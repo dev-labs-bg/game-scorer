@@ -25,16 +25,21 @@ allprojects {
 
 ext {
     final supportVersion = '26.0.0'
+    final firebaseVersion = '11.0.4'
     final daggerVersion = '2.11'
 
     dependencies = [
 
             kotlin               : "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version",
 
-            //Android Support
+            // Android Support
             supportAppCompat     : "com.android.support:appcompat-v7:$supportVersion",
             supportDesign        : "com.android.support:design:$supportVersion",
             supportRecyclerView  : "com.android.support:recyclerview-v7:$supportVersion",
+
+            // Firebase
+            firebaseDatabase     : "com.google.firebase:firebase-database:$firebaseVersion",
+            firebaseAuth         : "com.google.firebase:firebase-auth:$firebaseVersion",
 
             // Dagger 2
             dagger               : "com.google.dagger:dagger:$daggerVersion",
