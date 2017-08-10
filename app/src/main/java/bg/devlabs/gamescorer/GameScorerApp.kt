@@ -21,6 +21,5 @@ class GameScorerApp : Application() {
 
     private fun setupComponent() {
         appComponent = DaggerAppComponent.builder().build()
-        appComponent.inject(this)
     }
 }

@@ -1,7 +1,8 @@
-package bg.devlabs.gamescorer
+package bg.devlabs.gamescorer.ui.main
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import bg.devlabs.gamescorer.R
 
 class MainActivity : AppCompatActivity() {
 

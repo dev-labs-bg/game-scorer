@@ -1,8 +1,7 @@
 package bg.devlabs.gamescorer.di.component
 
-import bg.devlabs.gamescorer.GameScorerApp
-import bg.devlabs.gamescorer.MainActivity
 import bg.devlabs.gamescorer.di.module.AppModule
+import bg.devlabs.gamescorer.di.module.Bindings
 import dagger.Component
 import javax.inject.Singleton
 
@@ -13,10 +12,8 @@ import javax.inject.Singleton
  * slavi@devlabs.bg
  */
 @Singleton
-@Component(modules = arrayOf(AppModule::class))
+@Component(modules = arrayOf(Bindings::class, AppModule::class))
 interface AppComponent {
 
-    fun inject(application: GameScorerApp)
-
-    fun inject(activity: MainActivity)
+    fun activityComponent(): ActivityComponent
 }
