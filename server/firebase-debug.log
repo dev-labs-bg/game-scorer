@@ -1,0 +1,24 @@
+[debug] [2017-08-10T07:37:56.431Z] ----------------------------------------------------------------------
+[debug] [2017-08-10T07:37:56.433Z] Command:       /usr/bin/nodejs /usr/bin/firebase deploy
+[debug] [2017-08-10T07:37:56.433Z] CLI Version:   3.9.2
+[debug] [2017-08-10T07:37:56.433Z] Platform:      linux
+[debug] [2017-08-10T07:37:56.433Z] Node Version:  v8.2.1
+[debug] [2017-08-10T07:37:56.433Z] Time:          Thu Aug 10 2017 10:37:56 GMT+0300 (EEST)
+[debug] [2017-08-10T07:37:56.433Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2017-08-10T07:37:56.442Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2017-08-10T07:37:56.442Z] > authorizing via signed-in user
+[debug] [2017-08-10T07:37:56.443Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2017-08-10T07:37:56.443Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token { refresh_token: '1/KngwptsZdbDsFWScQ74aVKToPZHie5aTZsBVSno_EQI',
+  client_id: '563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com',
+  client_secret: 'j9iVZfS8kkCEFUPaAeJV0sAi',
+  grant_type: 'refresh_token',
+  scope: 'email https://www.googleapis.com/auth/cloud-platform https://www.googleapis.com/auth/cloudplatformprojects.readonly https://www.googleapis.com/auth/firebase openid' } 
+ Thu Aug 10 2017 10:37:56 GMT+0300 (EEST)
+[debug] [2017-08-10T07:37:56.590Z] <<< HTTP RESPONSE 200
+[debug] [2017-08-10T07:37:56.599Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/game-scorer-98601  
+ Thu Aug 10 2017 10:37:56 GMT+0300 (EEST)
+[debug] [2017-08-10T07:37:57.844Z] <<< HTTP RESPONSE 200
+[debug] [2017-08-10T07:37:57.844Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/game-scorer-98601/tokens  
+ Thu Aug 10 2017 10:37:57 GMT+0300 (EEST)
+[debug] [2017-08-10T07:37:58.520Z] <<< HTTP RESPONSE 200
