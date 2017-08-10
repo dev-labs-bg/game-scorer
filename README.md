@@ -19,3 +19,4 @@ To get started and run the app, you need to follow these simple steps:
 ## Dependencies
 - [Firebase](https://firebase.google.com/docs/android/setup)
 - [Kotlin](http://kotlinlang.org)
+- [Dagger 2](https://google.github.io/dagger/)
