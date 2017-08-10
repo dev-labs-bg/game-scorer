@@ -19,10 +19,15 @@ open class LoginActivity : BaseActivity(), LoginView {
     }
 
     override fun onLoginSuccess() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+
     }
 
     override fun onLoginFailure() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        presenter.unbind()
     }
 }

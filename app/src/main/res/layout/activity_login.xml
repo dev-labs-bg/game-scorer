@@ -1,8 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="bg.devlabs.gamescorer.ui.login.LoginActivity">
+    android:background="@color/md_blue_200">
 
-</android.support.constraint.ConstraintLayout>
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/loginWithTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/buttonsWrapper"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="32dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/login_with"
+        android:textColor="@color/black"
+        android:textSize="22sp" />
+
+    <LinearLayout
+        android:id="@+id/buttonsWrapper"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical">
+
+        <bg.devlabs.gamescorer.ui.custom_views.ColoredButton
+            android:id="@+id/emailButton"
+            android:layout_width="164dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:drawableStart="@drawable/ic_email_black_24dp"
+            android:text="@string/email"
+            custom:color_resource="@color/white" />
+
+        <bg.devlabs.gamescorer.ui.custom_views.ColoredButton
+            android:id="@+id/googleButton"
+            android:layout_width="164dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:drawableStart="@drawable/ic_google_24dp"
+            android:text="@string/google"
+            custom:color_resource="@color/white"/>
+
+        <bg.devlabs.gamescorer.ui.custom_views.ColoredButton
+            android:id="@+id/facebookButton"
+            android:layout_width="164dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:drawableStart="@drawable/ic_facebook_24dp"
+            android:text="@string/facebook"
+            custom:color_resource="@color/white"/>
+
+        <bg.devlabs.gamescorer.ui.custom_views.ColoredButton
+            android:id="@+id/twitterButton"
+            android:layout_width="164dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:drawableStart="@drawable/ic_twitter_24dp"
+            android:text="@string/twitter"
+            custom:color_resource="@color/white"/>
+    </LinearLayout>
+</RelativeLayout>

@@ -1,9 +1,11 @@
 package bg.devlabs.gamescorer.ui.base
 
+import android.app.Dialog
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import bg.devlabs.gamescorer.di.component.ActivityComponent
 import bg.devlabs.gamescorer.utils.extensions.getAppComponent
+import bg.devlabs.gamescorer.utils.extensions.show
 
 
 /**
@@ -11,9 +13,10 @@ import bg.devlabs.gamescorer.utils.extensions.getAppComponent
  * Dev Labs
  * slavi@devlabs.bg
  */
-abstract class BaseActivity : AppCompatActivity() {
+abstract class BaseActivity : AppCompatActivity(), MvpView {
 
     protected var activityComponent: ActivityComponent? = null
+    private lateinit var progressDialog: Dialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,4 +30,13 @@ abstract class BaseActivity : AppCompatActivity() {
     }
 
     protected abstract fun getLayoutResId(): Int
+
+    override fun showProgress(messageResId: Int) {
+        progressDialog = Dialog(this)
+        progressDialog.show(getString(messageResId), true, false)
+    }
+
+    override fun dismissProgress() {
+        progressDialog.dismiss()
+    }
 }
