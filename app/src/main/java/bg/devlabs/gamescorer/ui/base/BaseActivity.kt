@@ -7,7 +7,6 @@ import bg.devlabs.gamescorer.di.component.ActivityComponent
 import bg.devlabs.gamescorer.utils.extensions.getAppComponent
 import bg.devlabs.gamescorer.utils.extensions.show
 
-
 /**
  * Created by Slavi Petrov on 10.08.2017
  * Dev Labs

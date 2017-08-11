@@ -3,6 +3,7 @@ package bg.devlabs.gamescorer.ui.login
 import android.os.Bundle
 import bg.devlabs.gamescorer.R
 import bg.devlabs.gamescorer.ui.base.BaseActivity
+import kotlinx.android.synthetic.main.activity_login.*
 import javax.inject.Inject
 
 open class LoginActivity : BaseActivity(), LoginView {
@@ -15,7 +16,31 @@ open class LoginActivity : BaseActivity(), LoginView {
         super.onCreate(savedInstanceState)
         activityComponent?.inject(this)
 
-        presenter.bind(this)
+        presenter.onAttach(this)
+
+        initButtonListeners()
+    }
+
+    private fun initButtonListeners() {
+        loginButton.setOnClickListener {
+            presenter.onLoginButtonClicked()
+        }
+
+        googleButton.setOnClickListener {
+            presenter.onGoogleButtonClicked()
+        }
+
+        facebookButton.setOnClickListener {
+            presenter.onFacebookButtonClicked()
+        }
+
+        twitterButton.setOnClickListener {
+            presenter.onTwitterButtonClicked()
+        }
+
+        signUpButton.setOnClickListener {
+            presenter.onSignUpButtonClicked()
+        }
     }
 
     override fun onLoginSuccess() {
@@ -28,6 +53,6 @@ open class LoginActivity : BaseActivity(), LoginView {
 
     override fun onDestroy() {
         super.onDestroy()
-        presenter.unbind()
+        presenter.onDetach()
     }
 }

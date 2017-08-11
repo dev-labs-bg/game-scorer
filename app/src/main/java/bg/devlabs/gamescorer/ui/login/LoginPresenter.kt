@@ -10,6 +10,24 @@ import javax.inject.Inject
  * Dev Labs
  * slavi@devlabs.bg
  */
-class LoginPresenter @Inject constructor(dataManager: DataManager) : BasePresenter<LoginView>() {
+class LoginPresenter @Inject constructor(val dataManager: DataManager) : BasePresenter<LoginView>() {
+    fun onLoginButtonClicked() {
 
+    }
+
+    fun onGoogleButtonClicked() {
+
+    }
+
+    fun onFacebookButtonClicked() {
+
+    }
+
+    fun onTwitterButtonClicked() {
+
+    }
+
+    fun onSignUpButtonClicked() {
+
+    }
 }

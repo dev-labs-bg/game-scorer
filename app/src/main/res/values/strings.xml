@@ -6,4 +6,10 @@
     <string name="twitter">Twitter</string>
     <string name="google">Google</string>
     <string name="login_with">Login with</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="or_connect_with">Or connect with</string>
+    <string name="dont_have_an_account">Don\'t have an account?</string>
+    <string name="sign_up">Sign up</string>
 </resources>

@@ -3,40 +3,66 @@
     xmlns:custom="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/md_blue_200">
+    android:background="@color/colorPrimary">
 
-    <android.support.v7.widget.AppCompatTextView
-        android:id="@+id/loginWithTextView"
+    <android.support.design.widget.TextInputLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/buttonsWrapper"
+        android:layout_above="@+id/passwordInputLayout"
+        android:layout_centerHorizontal="true">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/usernameView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/username"
+            android:inputType="text" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/passwordInputLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/loginButton"
+        android:layout_centerHorizontal="true">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/passwordView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/password" />
+    </android.support.design.widget.TextInputLayout>
+
+    <bg.devlabs.gamescorer.ui.custom_views.ColoredButton
+        android:id="@+id/loginButton"
+        android:layout_width="164dp"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/connectWithTextView"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="@string/login_with"
-        android:textColor="@color/black"
-        android:textSize="22sp" />
+        android:text="@string/login"
+        custom:color_resource="@color/white" />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/connectWithTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="@string/or_connect_with"
+        android:textColor="@color/black" />
 
     <LinearLayout
         android:id="@+id/buttonsWrapper"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
+        android:layout_below="@id/connectWithTextView"
+        android:layout_centerHorizontal="true"
         android:orientation="vertical">
-
-        <bg.devlabs.gamescorer.ui.custom_views.ColoredButton
-            android:id="@+id/emailButton"
-            android:layout_width="164dp"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:drawableStart="@drawable/ic_email_black_24dp"
-            android:text="@string/email"
-            custom:color_resource="@color/white" />
 
         <bg.devlabs.gamescorer.ui.custom_views.ColoredButton
             android:id="@+id/googleButton"
@@ -48,7 +74,7 @@
             android:layout_marginTop="8dp"
             android:drawableStart="@drawable/ic_google_24dp"
             android:text="@string/google"
-            custom:color_resource="@color/white"/>
+            custom:color_resource="@color/white" />
 
         <bg.devlabs.gamescorer.ui.custom_views.ColoredButton
             android:id="@+id/facebookButton"
@@ -60,7 +86,7 @@
             android:layout_marginTop="8dp"
             android:drawableStart="@drawable/ic_facebook_24dp"
             android:text="@string/facebook"
-            custom:color_resource="@color/white"/>
+            custom:color_resource="@color/white" />
 
         <bg.devlabs.gamescorer.ui.custom_views.ColoredButton
             android:id="@+id/twitterButton"
@@ -72,6 +98,27 @@
             android:layout_marginTop="8dp"
             android:drawableStart="@drawable/ic_twitter_24dp"
             android:text="@string/twitter"
-            custom:color_resource="@color/white"/>
+            custom:color_resource="@color/white" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true">
+
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/dont_have_an_account"
+            android:textColor="@color/black" />
+
+        <bg.devlabs.gamescorer.ui.custom_views.ColoredButton
+            android:id="@+id/signUpButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="@string/sign_up"
+            custom:color_resource="@color/white" />
     </LinearLayout>
 </RelativeLayout>

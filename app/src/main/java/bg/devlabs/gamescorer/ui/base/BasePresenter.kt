@@ -9,11 +9,11 @@ package bg.devlabs.gamescorer.ui.base
 abstract class BasePresenter<T: MvpView> {
     protected var view: T? = null
 
-    fun bind(view: T) {
+    fun onAttach(view: T) {
         this.view = view
     }
 
-    fun unbind() {
+    fun onDetach() {
         this.view = null
     }
 }
