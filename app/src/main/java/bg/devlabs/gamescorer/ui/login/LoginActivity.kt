@@ -23,7 +23,8 @@ open class LoginActivity : BaseActivity(), LoginView {
 
     private fun initButtonListeners() {
         loginButton.setOnClickListener {
-            presenter.onLoginButtonClicked()
+            presenter.onLoginButtonClicked(usernameView.text.toString(),
+                    passwordView.text.toString())
         }
 
         googleButton.setOnClickListener {
