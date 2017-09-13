@@ -7,7 +7,6 @@ import kotlinx.android.synthetic.main.activity_login.*
 import javax.inject.Inject
 
 open class LoginActivity : BaseActivity(), LoginView {
-
     @Inject lateinit var presenter: LoginPresenter
 
     override fun getLayoutResId() = R.layout.activity_login
@@ -23,8 +22,7 @@ open class LoginActivity : BaseActivity(), LoginView {
 
     private fun initButtonListeners() {
         loginButton.setOnClickListener {
-            presenter.onLoginButtonClicked(usernameView.text.toString(),
-                    passwordView.text.toString())
+            presenter.onLoginButtonClicked(usernameView.text, passwordView.text)
         }
 
         googleButton.setOnClickListener {
@@ -55,5 +53,19 @@ open class LoginActivity : BaseActivity(), LoginView {
     override fun onDestroy() {
         super.onDestroy()
         presenter.onDetach()
+    }
+
+    override fun fieldsValid(): Boolean {
+        if (usernameView.text.isEmpty()) {
+            usernameView.setError(getString(R.string.username_empty_warning))
+            return false
+        }
+
+        if (passwordView.text.isEmpty()) {
+            passwordView.setError(getString(R.string.password_empty_warning))
+            return false
+        }
+
+        return true
     }
 }

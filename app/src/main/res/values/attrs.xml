@@ -3,4 +3,11 @@
     <declare-styleable name="ColoredButton">
         <attr name="color_resource" format="color"/>
     </declare-styleable>
+
+    <declare-styleable name="HintEditText">
+        <attr name="ime_options" format="integer"/>
+        <attr name="hint" format="reference"/>
+        <attr name="suggestions_enabled" format="boolean"/>
+        <attr name="password_visibility_enabled" format="boolean"/>
+    </declare-styleable>
 </resources>

@@ -3,37 +3,27 @@
     xmlns:custom="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
     android:background="@color/colorPrimary">
 
-    <android.support.design.widget.TextInputLayout
+    <bg.devlabs.gamescorer.ui.custom_views.HintEditText
+        android:id="@+id/usernameView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/passwordInputLayout"
-        android:layout_centerHorizontal="true">
+        android:layout_above="@+id/passwordView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="8dp"
+        custom:hint="@string/username" />
 
-        <android.support.design.widget.TextInputEditText
-            android:id="@+id/usernameView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="@string/username"
-            android:inputType="text" />
-    </android.support.design.widget.TextInputLayout>
-
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/passwordInputLayout"
+    <bg.devlabs.gamescorer.ui.custom_views.HintEditText
+        android:id="@+id/passwordView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/loginButton"
-        android:layout_centerHorizontal="true">
-
-        <android.support.design.widget.TextInputEditText
-            android:id="@+id/passwordView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="@string/password" />
-    </android.support.design.widget.TextInputLayout>
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="8dp"
+        custom:hint="@string/password"
+        custom:password_visibility_enabled="true" />
 
     <bg.devlabs.gamescorer.ui.custom_views.ColoredButton
         android:id="@+id/loginButton"

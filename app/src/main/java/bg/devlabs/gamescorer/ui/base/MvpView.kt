@@ -7,8 +7,7 @@ package bg.devlabs.gamescorer.ui.base
  * slavi@devlabs.bg
  */
 interface MvpView {
-
     fun showProgress(messageResId: Int)
-
     fun dismissProgress()
+    fun showInfoDialog(message: String)
 }

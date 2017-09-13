@@ -14,15 +14,21 @@ import javax.inject.Inject
  * Dev Labs
  * slavi@devlabs.bg
  */
-class LoginPresenter @Inject constructor(val dataManager: DataManager) : BasePresenter<LoginView>() {
+class LoginPresenter @Inject constructor(private val dataManager: DataManager) : BasePresenter<LoginView>() {
     fun onLoginButtonClicked(email: String, password: String) {
+        if (view!!.fieldsValid()) {
+            signInFirebase(email, password)
+        }
+    }
+
+    private fun signInFirebase(email: String, password: String) {
         dataManager.signInEmail(email, password, object: OnUserSignedInListener{
             override fun onSuccess(dataSnapshot: DataSnapshot, firebaseUser: FirebaseUser) {
-                
+
             }
 
             override fun onFailure(task: Task<AuthResult>) {
-
+                view!!.showInfoDialog(task.exception!!.message!!)
             }
         })
     }

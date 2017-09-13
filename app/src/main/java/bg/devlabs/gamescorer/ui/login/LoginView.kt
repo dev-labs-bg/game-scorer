@@ -9,8 +9,7 @@ import bg.devlabs.gamescorer.ui.base.MvpView
  * slavi@devlabs.bg
  */
 interface LoginView : MvpView {
-
     fun onLoginSuccess()
-
     fun onLoginFailure()
+    fun fieldsValid(): Boolean
 }
