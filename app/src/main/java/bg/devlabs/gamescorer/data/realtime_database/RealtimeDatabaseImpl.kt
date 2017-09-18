@@ -13,6 +13,6 @@ import javax.inject.Singleton
 class RealtimeDatabaseImpl @Inject constructor(): RealtimeDatabase{
 
     override fun writeUserInfo() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+
     }
 }

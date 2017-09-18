@@ -48,4 +48,12 @@ abstract class BaseActivity : AppCompatActivity(), MvpView {
                 .setPositiveButton(R.string.dismiss) { _, _ -> }
                 .show()
     }
+
+    override fun showInfoDialog(messageResId: Int) {
+        AlertDialog.Builder(this)
+                .setTitle(R.string.error)
+                .setMessage(getString(messageResId))
+                .setPositiveButton(R.string.dismiss) { _, _ -> }
+                .show()
+    }
 }

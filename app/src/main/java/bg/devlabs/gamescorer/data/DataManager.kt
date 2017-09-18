@@ -10,4 +10,5 @@ import bg.devlabs.gamescorer.ui.login.OnUserSignedInListener
  */
 interface DataManager {
     fun signInEmail(email: String, password: String, listener: OnUserSignedInListener)
+    fun signInGoogle()
 }

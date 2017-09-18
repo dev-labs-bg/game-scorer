@@ -10,4 +10,5 @@ interface MvpView {
     fun showProgress(messageResId: Int)
     fun dismissProgress()
     fun showInfoDialog(message: String)
+    fun showInfoDialog(messageResId: Int)
 }

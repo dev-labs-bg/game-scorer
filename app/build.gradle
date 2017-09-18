@@ -44,6 +44,8 @@ dependencies {
     // Dagger 2
     compile dependencies.dagger
     kapt dependencies.daggerCompiler
+    // Google Auth
+    compile dependencies.googleAuth
 }
 
 

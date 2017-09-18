@@ -16,4 +16,5 @@
     <string name="password_empty_warning">Password cannot be empty!</string>
     <string name="error">Error</string>
     <string name="dismiss">Dismiss</string>
+    <string name="error_signing_in_try_again">An error occurred when signing in! Try again later.</string>
 </resources>

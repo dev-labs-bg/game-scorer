@@ -1,6 +1,8 @@
 package bg.devlabs.gamescorer.ui.login
 
 import bg.devlabs.gamescorer.ui.base.MvpView
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.api.GoogleApiClient
 
 
 /**
@@ -12,4 +14,7 @@ interface LoginView : MvpView {
     fun onLoginSuccess()
     fun onLoginFailure()
     fun fieldsValid(): Boolean
+    fun getDefaultWebClientId(): String?
+    fun buildGoogleApiClient(gso: GoogleSignInOptions): GoogleApiClient
+    fun startGoogleLoginActivity(googleApiClient: GoogleApiClient)
 }
