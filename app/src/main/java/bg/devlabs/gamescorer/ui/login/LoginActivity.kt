@@ -3,7 +3,7 @@ package bg.devlabs.gamescorer.ui.login
 import android.content.Intent
 import android.os.Bundle
 import bg.devlabs.gamescorer.R
-import bg.devlabs.gamescorer.ui.base.BaseActivity
+import bg.devlabs.gamescorer.ui.base.InjectionBaseActivity
 import com.google.android.gms.auth.api.Auth
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.ConnectionResult
@@ -12,19 +12,19 @@ import kotlinx.android.synthetic.main.activity_login.*
 import javax.inject.Inject
 
 
+open class LoginActivity : InjectionBaseActivity(), LoginContract.View,
+        GoogleApiClient.OnConnectionFailedListener {
 
-open class LoginActivity : BaseActivity(), LoginView, GoogleApiClient.OnConnectionFailedListener {
     private val RC_SIGN_IN = 9001
 
-    @Inject lateinit var presenter: LoginPresenter
+    @Inject
+    lateinit var presenter: LoginPresenter
 
     override fun getLayoutResId() = R.layout.activity_login
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         activityComponent?.inject(this)
-
-        presenter.onAttach(this)
 
         initButtonListeners()
     }

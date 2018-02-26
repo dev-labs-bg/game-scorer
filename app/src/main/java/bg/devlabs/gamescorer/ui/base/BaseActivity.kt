@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import bg.devlabs.gamescorer.R
 import bg.devlabs.gamescorer.di.component.ActivityComponent
-import bg.devlabs.gamescorer.utils.extensions.getAppComponent
 import bg.devlabs.gamescorer.utils.extensions.show
 
 /**
@@ -14,7 +13,7 @@ import bg.devlabs.gamescorer.utils.extensions.show
  * Dev Labs
  * slavi@devlabs.bg
  */
-abstract class BaseActivity : AppCompatActivity(), MvpView {
+abstract class BaseActivity : AppCompatActivity(), BaseContract.View {
 
     protected var activityComponent: ActivityComponent? = null
     private lateinit var progressDialog: Dialog
@@ -22,7 +21,6 @@ abstract class BaseActivity : AppCompatActivity(), MvpView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(getLayoutResId())
-        activityComponent = getAppComponent().activityComponent()
     }
 
     override fun onDestroy() {

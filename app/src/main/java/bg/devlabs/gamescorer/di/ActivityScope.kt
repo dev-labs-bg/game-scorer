@@ -1,4 +1,4 @@
-package bg.devlabs.gamescorer.di.scope
+package bg.devlabs.gamescorer.di
 
 import javax.inject.Scope
 

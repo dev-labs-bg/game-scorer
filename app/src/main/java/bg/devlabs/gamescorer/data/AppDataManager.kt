@@ -3,7 +3,6 @@ package bg.devlabs.gamescorer.data
 import android.util.Log
 import bg.devlabs.gamescorer.data.realtime_database.RealtimeDatabase
 import bg.devlabs.gamescorer.ui.login.OnUserSignedInListener
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.FirebaseAuth
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -15,7 +14,7 @@ import javax.inject.Singleton
  * slavi@devlabs.bg
  */
 @Singleton
-internal class DataManagerImpl @Inject constructor(val realtimeDatabase: RealtimeDatabase) : DataManager {
+class AppDataManager @Inject constructor(val realtimeDatabase: RealtimeDatabase) : DataManager {
     var firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
 
     override fun signInEmail(email: String, password: String, listener: OnUserSignedInListener) {

@@ -1,8 +1,12 @@
 package bg.devlabs.gamescorer
 
+import android.app.Activity
 import android.app.Application
-import bg.devlabs.gamescorer.di.component.AppComponent
-import bg.devlabs.gamescorer.di.component.DaggerAppComponent
+import bg.devlabs.gamescorer.di.DaggerAppComponent
+import dagger.android.AndroidInjector
+import dagger.android.DispatchingAndroidInjector
+import dagger.android.HasActivityInjector
+import javax.inject.Inject
 
 
 /**
@@ -10,16 +14,21 @@ import bg.devlabs.gamescorer.di.component.DaggerAppComponent
  * Dev Labs
  * slavi@devlabs.bg
  */
-class GameScorerApp : Application() {
+class GameScorerApp : Application(), HasActivityInjector {
 
-    lateinit var appComponent: AppComponent
+    @Inject
+    lateinit var activityAndroidInjector: DispatchingAndroidInjector<Activity>
 
     override fun onCreate() {
         super.onCreate()
-        setupComponent()
+        DaggerAppComponent
+                .builder()
+                .application(this)
+                .build()
+                .inject(this)
     }
 
-    private fun setupComponent() {
-        appComponent = DaggerAppComponent.builder().build()
+    override fun activityInjector(): AndroidInjector<Activity> {
+        return activityAndroidInjector
     }
 }

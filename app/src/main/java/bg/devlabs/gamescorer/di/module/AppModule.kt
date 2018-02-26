@@ -1,5 +1,7 @@
 package bg.devlabs.gamescorer.di.module
 
+import bg.devlabs.gamescorer.data.AppDataManager
+import bg.devlabs.gamescorer.data.DataManager
 import bg.devlabs.gamescorer.data.realtime_database.RealtimeDatabase
 import bg.devlabs.gamescorer.data.realtime_database.RealtimeDatabaseImpl
 import dagger.Module
@@ -22,4 +24,8 @@ open class AppModule {
     fun provideRealtimeDatabase(realtimeDatabase: RealtimeDatabaseImpl) : RealtimeDatabase {
         return realtimeDatabase
     }
+
+    @Provides
+    @Singleton
+    fun provideDataManager(appDataManager: AppDataManager): DataManager = appDataManager
 }

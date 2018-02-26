@@ -1,6 +1,6 @@
 package bg.devlabs.gamescorer.di.component
 
-import bg.devlabs.gamescorer.di.scope.ActivityScope
+import bg.devlabs.gamescorer.di.ActivityScope
 import bg.devlabs.gamescorer.ui.login.LoginActivity
 import bg.devlabs.gamescorer.ui.main.MainActivity
 import dagger.Subcomponent

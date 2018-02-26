@@ -8,5 +8,5 @@ ext.versions = [
         kotlin         : '1.2.21',
         support_library: '27.0.2',
         firebase       : '11.8.0',
-        dagger         : '2.11'
+        dagger         : '2.14.1'
 ]
