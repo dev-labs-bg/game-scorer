@@ -1,0 +1,12 @@
+ext.versions = [
+        minSdk         : 21,
+        compileSdk     : 27,
+        buildTools     : '27.0.3',
+
+        gradle         : '3.0.1',
+        google_services: '3.2.0',
+        kotlin         : '1.2.21',
+        support_library: '27.0.2',
+        firebase       : '11.8.0',
+        dagger         : '2.11'
+]

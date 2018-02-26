@@ -4,17 +4,17 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
-kapt {
-    generateStubs = true
-}
+apply plugin: 'kotlin-kapt'
+
+apply from: '../dependencies.gradle'
 
 android {
-    compileSdkVersion 26
-    buildToolsVersion "26.0.1"
+    compileSdkVersion 27
+    buildToolsVersion "26.0.2"
     defaultConfig {
         applicationId "bg.devlabs.gamescorer"
         minSdkVersion 19
-        targetSdkVersion 26
+        targetSdkVersion 27
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -29,24 +29,23 @@ android {
 }
 
 dependencies {
-    def dependencies = rootProject.ext.dependencies
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    compile dependencies.kotlin
-    compile dependencies.supportAppCompat
-    compile dependencies.supportDesign
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$versions.kotlin"
+    implementation "com.android.support:appcompat-v7:$versions.support_library"
+    implementation "com.android.support:design:$versions.support_library"
+    implementation "com.android.support:recyclerview-v7:$versions.support_library"
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.0'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.0'
+    androidTestImplementation 'com.android.support.test:runner:1.0.1'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
     // Firebase
-    compile dependencies.firebaseAuth
-    compile dependencies.firebaseDatabase
+    implementation "com.google.firebase:firebase-auth:$versions.firebase"
+    implementation "com.google.firebase:firebase-database:$versions.firebase"
     // Dagger 2
-    compile dependencies.dagger
-    kapt dependencies.daggerCompiler
+    implementation "com.google.dagger:dagger:$versions.dagger"
+    kapt "com.google.dagger:dagger-compiler:$versions.dagger"
     // Google Auth
-    compile dependencies.googleAuth
+    implementation "com.google.android.gms:play-services-auth:$versions.firebase"
 }
-
 
 apply plugin: 'com.google.gms.google-services'
