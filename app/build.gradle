@@ -49,6 +49,9 @@ dependencies {
     kapt "com.google.dagger:dagger-android-processor:$versions.dagger"
     // Google Auth
     implementation "com.google.android.gms:play-services-auth:$versions.firebase"
+    // RxJava2
+    implementation "io.reactivex.rxjava2:rxjava:$versions.rx_java"
+    implementation "io.reactivex.rxjava2:rxandroid:$versions.rx_android"
 }
 
 apply plugin: 'com.google.gms.google-services'

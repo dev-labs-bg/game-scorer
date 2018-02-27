@@ -1,4 +1,4 @@
-package bg.devlabs.gamescorer.data.realtime_database
+package bg.devlabs.gamescorer.data.db
 
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -10,7 +10,7 @@ import javax.inject.Singleton
  * slavi@devlabs.bg
  */
 @Singleton
-class RealtimeDatabaseImpl @Inject constructor(): RealtimeDatabase{
+class AppRealtimeDbHelper @Inject constructor(): RealtimeDbHelper {
 
     override fun writeUserInfo() {
 

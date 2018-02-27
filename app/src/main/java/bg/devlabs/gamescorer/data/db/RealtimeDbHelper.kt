@@ -1,4 +1,4 @@
-package bg.devlabs.gamescorer.data.realtime_database
+package bg.devlabs.gamescorer.data.db
 
 
 /**
@@ -6,6 +6,6 @@ package bg.devlabs.gamescorer.data.realtime_database
  * Dev Labs
  * slavi@devlabs.bg
  */
-interface RealtimeDatabase {
+interface RealtimeDbHelper {
     fun writeUserInfo()
 }

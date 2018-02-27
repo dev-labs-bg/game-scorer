@@ -1,6 +1,7 @@
 package bg.devlabs.gamescorer.data
 
-import bg.devlabs.gamescorer.ui.login.OnUserSignedInListener
+import bg.devlabs.gamescorer.data.auth.AuthHelper
+import bg.devlabs.gamescorer.data.db.RealtimeDbHelper
 
 
 /**
@@ -8,7 +9,6 @@ import bg.devlabs.gamescorer.ui.login.OnUserSignedInListener
  * Dev Labs
  * slavi@devlabs.bg
  */
-interface DataManager {
-    fun signInEmail(email: String, password: String, listener: OnUserSignedInListener)
-    fun signInGoogle()
+interface DataManager : RealtimeDbHelper, AuthHelper {
+
 }

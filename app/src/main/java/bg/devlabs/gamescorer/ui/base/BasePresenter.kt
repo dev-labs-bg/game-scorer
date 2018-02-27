@@ -1,6 +1,7 @@
 package bg.devlabs.gamescorer.ui.base
 
 import bg.devlabs.gamescorer.data.DataManager
+import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Inject
 
 
@@ -13,8 +14,11 @@ abstract class BasePresenter<V : BaseContract.View>(var view: V?) : BaseContract
 
     @Inject
     lateinit var dataManager: DataManager
+    @Inject
+    lateinit var compositeDisposable: CompositeDisposable
 
     fun onDetach() {
         this.view = null
+        compositeDisposable.dispose()
     }
 }

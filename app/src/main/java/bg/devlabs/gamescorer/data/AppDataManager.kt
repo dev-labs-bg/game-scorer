@@ -1,9 +1,12 @@
 package bg.devlabs.gamescorer.data
 
-import android.util.Log
-import bg.devlabs.gamescorer.data.realtime_database.RealtimeDatabase
-import bg.devlabs.gamescorer.ui.login.OnUserSignedInListener
-import com.google.firebase.auth.FirebaseAuth
+import bg.devlabs.gamescorer.data.auth.AuthHelper
+import bg.devlabs.gamescorer.data.db.RealtimeDbHelper
+import bg.devlabs.gamescorer.utils.extensions.prepare
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.tasks.Task
+import com.google.firebase.auth.AuthResult
+import io.reactivex.Observable
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -14,23 +17,21 @@ import javax.inject.Singleton
  * slavi@devlabs.bg
  */
 @Singleton
-class AppDataManager @Inject constructor(val realtimeDatabase: RealtimeDatabase) : DataManager {
-    var firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
+class AppDataManager @Inject
+constructor(private val realtimeDbHelper: RealtimeDbHelper,
+            private val authHelper: AuthHelper) : DataManager {
+    override val googleSignInClient: GoogleSignInClient
+        get() = authHelper.googleSignInClient
 
-    override fun signInEmail(email: String, password: String, listener: OnUserSignedInListener) {
-        firebaseAuth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        Log.d("Firebase Login", "Successful login!")
-//                        listener.onSuccess()
-                    } else {
-                        Log.d("Firebase Login", "Login failed!!")
-                        listener.onFailure(task)
-                    }
-                }
+    override fun signInEmail(email: String, password: String): Observable<Task<AuthResult>> {
+        return authHelper.signInEmail(email, password).prepare()
     }
 
     override fun signInGoogle() {
+
+    }
+
+    override fun writeUserInfo() {
 
     }
 }

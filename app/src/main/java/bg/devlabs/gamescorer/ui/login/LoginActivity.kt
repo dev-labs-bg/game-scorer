@@ -5,6 +5,7 @@ import android.os.Bundle
 import bg.devlabs.gamescorer.R
 import bg.devlabs.gamescorer.ui.base.InjectionBaseActivity
 import com.google.android.gms.auth.api.Auth
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.ConnectionResult
 import com.google.android.gms.common.api.GoogleApiClient
@@ -12,7 +13,7 @@ import kotlinx.android.synthetic.main.activity_login.*
 import javax.inject.Inject
 
 
-open class LoginActivity : InjectionBaseActivity(), LoginContract.View,
+class LoginActivity : InjectionBaseActivity(), LoginContract.View,
         GoogleApiClient.OnConnectionFailedListener {
 
     private val RC_SIGN_IN = 9001
@@ -101,8 +102,7 @@ open class LoginActivity : InjectionBaseActivity(), LoginContract.View,
         showInfoDialog(p0.errorMessage.toString())
     }
 
-    override fun startGoogleLoginActivity(googleApiClient: GoogleApiClient) {
-        val signInIntent = Auth.GoogleSignInApi.getSignInIntent(googleApiClient)
-        startActivityForResult(signInIntent, RC_SIGN_IN)
+    override fun startGoogleLoginActivity(googleSignInClient: GoogleSignInClient) {
+        startActivityForResult(googleSignInClient.signInIntent, RC_SIGN_IN)
     }
 }

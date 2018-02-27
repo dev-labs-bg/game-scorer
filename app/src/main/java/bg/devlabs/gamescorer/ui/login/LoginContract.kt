@@ -1,6 +1,7 @@
 package bg.devlabs.gamescorer.ui.login
 
 import bg.devlabs.gamescorer.ui.base.BaseContract
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.GoogleApiClient
 
@@ -18,7 +19,7 @@ interface LoginContract {
         fun fieldsValid(): Boolean
         fun getDefaultWebClientId(): String?
         fun buildGoogleApiClient(gso: GoogleSignInOptions): GoogleApiClient
-        fun startGoogleLoginActivity(googleApiClient: GoogleApiClient)
+        fun startGoogleLoginActivity(googleSignInClient: GoogleSignInClient)
     }
 
     interface Presenter {

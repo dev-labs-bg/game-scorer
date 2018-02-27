@@ -2,6 +2,9 @@ package bg.devlabs.gamescorer.utils.extensions
 
 import android.app.Dialog
 import bg.devlabs.gamescorer.R
+import io.reactivex.Observable
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.dialog.*
 
 
@@ -17,3 +20,5 @@ fun Dialog.show(message: String, indeterminate: Boolean, cancelable: Boolean) {
     this.setCancelable(cancelable)
     this.show()
 }
+
+fun <T> Observable<T>.prepare() = this.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())

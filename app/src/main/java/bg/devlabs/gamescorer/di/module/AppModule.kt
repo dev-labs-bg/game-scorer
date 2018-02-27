@@ -1,11 +1,21 @@
 package bg.devlabs.gamescorer.di.module
 
+import android.app.Application
+import android.content.Context
+import bg.devlabs.gamescorer.R
 import bg.devlabs.gamescorer.data.AppDataManager
 import bg.devlabs.gamescorer.data.DataManager
-import bg.devlabs.gamescorer.data.realtime_database.RealtimeDatabase
-import bg.devlabs.gamescorer.data.realtime_database.RealtimeDatabaseImpl
+import bg.devlabs.gamescorer.data.auth.AppAuthHelper
+import bg.devlabs.gamescorer.data.auth.AuthHelper
+import bg.devlabs.gamescorer.data.db.AppRealtimeDbHelper
+import bg.devlabs.gamescorer.data.db.RealtimeDbHelper
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.firebase.auth.FirebaseAuth
 import dagger.Module
 import dagger.Provides
+import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Singleton
 
 
@@ -21,11 +31,36 @@ open class AppModule {
 
     @Provides
     @Singleton
-    fun provideRealtimeDatabase(realtimeDatabase: RealtimeDatabaseImpl) : RealtimeDatabase {
-        return realtimeDatabase
-    }
+    fun provideContext(application: Application): Context = application
 
     @Provides
     @Singleton
     fun provideDataManager(appDataManager: AppDataManager): DataManager = appDataManager
+
+    @Provides
+    @Singleton
+    fun provideRealtimeDbHelper(appRealtimeDbHelper: AppRealtimeDbHelper): RealtimeDbHelper =
+            appRealtimeDbHelper
+
+    @Provides
+    @Singleton
+    fun provideAuthHelper(appAuthHelper: AppAuthHelper): AuthHelper = appAuthHelper
+
+    @Provides
+    @Singleton
+    fun provideFirebaseAuth(): FirebaseAuth = FirebaseAuth.getInstance()
+
+    @Provides
+    fun provideCompositeDisposable(): CompositeDisposable = CompositeDisposable()
+
+    @Provides
+    @Singleton
+    fun provideGoogleApiClient(context: Context): GoogleSignInClient {
+        val gso: GoogleSignInOptions = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(context.getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build()
+
+        return GoogleSignIn.getClient(context, gso)
+    }
 }
