@@ -2,6 +2,7 @@ package bg.devlabs.gamescorer.ui.login
 
 import bg.devlabs.gamescorer.ui.base.BasePresenter
 import com.google.android.gms.auth.api.signin.GoogleSignInResult
+import com.google.firebase.database.FirebaseDatabase
 import javax.inject.Inject
 
 
@@ -13,7 +14,7 @@ import javax.inject.Inject
 class LoginPresenter @Inject constructor(view: LoginContract.View)
     : BasePresenter<LoginContract.View>(view), LoginContract.Presenter {
 
-    fun onLoginButtonClicked(email: String, password: String) {
+    override fun onLoginButtonClicked(email: String, password: String) {
         if (view!!.fieldsValid()) {
             signInFirebase(email, password)
         }
@@ -28,25 +29,29 @@ class LoginPresenter @Inject constructor(view: LoginContract.View)
                 }))
     }
 
-    fun onGoogleButtonClicked() {
+    override fun onGoogleButtonClicked() {
         view!!.startGoogleLoginActivity(dataManager.googleSignInClient)
 
         dataManager.signInGoogle()
     }
 
-    fun onFacebookButtonClicked() {
+    override fun onFacebookButtonClicked() {
+        val dbReference = FirebaseDatabase.getInstance().getReference("notifications")
+                .child("invitations").push()
+        dbReference.setValue(Notification("Title", "Author"))
+    }
+
+    data class Notification(val title: String, val author: String)
+
+    override fun onTwitterButtonClicked() {
 
     }
 
-    fun onTwitterButtonClicked() {
+    override fun onSignUpButtonClicked() {
 
     }
 
-    fun onSignUpButtonClicked() {
-
-    }
-
-    fun handleSignInResult(result: GoogleSignInResult?) {
+    override fun handleSignInResult(result: GoogleSignInResult?) {
         if (result!!.isSuccess) {
             // The user is logged in
             var account = result.signInAccount

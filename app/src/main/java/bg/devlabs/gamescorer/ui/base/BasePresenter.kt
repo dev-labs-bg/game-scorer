@@ -17,7 +17,7 @@ abstract class BasePresenter<V : BaseContract.View>(var view: V?) : BaseContract
     @Inject
     lateinit var compositeDisposable: CompositeDisposable
 
-    fun onDetach() {
+    override fun onDetach() {
         this.view = null
         compositeDisposable.dispose()
     }

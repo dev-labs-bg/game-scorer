@@ -16,6 +16,6 @@ interface BaseContract {
     }
 
     interface Presenter {
-
+        fun onDetach()
     }
 }

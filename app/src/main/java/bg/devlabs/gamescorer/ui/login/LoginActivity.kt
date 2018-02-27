@@ -19,14 +19,13 @@ class LoginActivity : InjectionBaseActivity(), LoginContract.View,
     private val RC_SIGN_IN = 9001
 
     @Inject
-    lateinit var presenter: LoginPresenter
+    lateinit var presenter: LoginContract.Presenter
 
     override fun getLayoutResId() = R.layout.activity_login
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         activityComponent?.inject(this)
-
         initButtonListeners()
     }
 

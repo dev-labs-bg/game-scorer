@@ -41,6 +41,7 @@ dependencies {
     // Firebase
     implementation "com.google.firebase:firebase-auth:$versions.firebase"
     implementation "com.google.firebase:firebase-database:$versions.firebase"
+    compile "com.google.firebase:firebase-messaging:$versions.firebase"
     // Dagger 2
     implementation "com.google.dagger:dagger:$versions.dagger"
     kapt "com.google.dagger:dagger-compiler:$versions.dagger"
