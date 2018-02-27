@@ -1,129 +1,139 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:custom="http://schemas.android.com/apk/res-auto"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:animateLayoutChanges="true"
-    android:background="@color/md_blue_300">
+    android:fillViewport="true">
 
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/username_text_input_layout"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/password_text_input_layout"
-        android:layout_marginBottom="32dp"
-        android:layout_marginEnd="46dp"
-        android:layout_marginStart="46dp">
-
-        <android.support.design.widget.TextInputEditText
-            android:id="@+id/username_edit_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/username"
-            android:inputType="textEmailAddress" />
-    </android.support.design.widget.TextInputLayout>
-
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/password_text_input_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/login_button"
-        android:layout_marginBottom="32dp"
-        android:layout_marginEnd="46dp"
-        android:layout_marginStart="46dp"
-        custom:passwordToggleEnabled="true">
-
-        <android.support.design.widget.TextInputEditText
-            android:id="@+id/password_edit_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/password"
-            android:inputType="textPassword" />
-    </android.support.design.widget.TextInputLayout>
-
-    <bg.devlabs.gamescorer.ui.custom_views.ColoredButton
-        android:id="@+id/login_button"
-        android:layout_width="164dp"
-        android:layout_height="wrap_content"
-        android:layout_above="@id/connect_with_text_view"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/login"
-        custom:color_resource="@color/white" />
-
-    <android.support.v7.widget.AppCompatTextView
-        android:id="@+id/connect_with_text_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="@string/or_connect_with"
-        android:textColor="@color/black" />
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/connect_with_text_view"
-        android:layout_centerHorizontal="true"
+        android:animateLayoutChanges="true"
+        android:background="@color/md_blue_300"
+        android:focusableInTouchMode="true"
+        android:gravity="center"
         android:orientation="vertical">
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/username_text_input_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:layout_marginEnd="46dp"
+            android:layout_marginStart="46dp">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/username_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/username"
+                android:inputType="textEmailAddress" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/password_text_input_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:layout_marginEnd="46dp"
+            android:layout_marginStart="46dp"
+            custom:passwordToggleEnabled="true">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/password_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/password"
+                android:inputType="textPassword" />
+        </android.support.design.widget.TextInputLayout>
+
         <bg.devlabs.gamescorer.ui.custom_views.ColoredButton
-            android:id="@+id/google_button"
+            android:id="@+id/login_button"
             android:layout_width="164dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:drawableStart="@drawable/ic_google_24dp"
-            android:text="@string/google"
+            android:text="@string/login"
             custom:color_resource="@color/white" />
-
-        <bg.devlabs.gamescorer.ui.custom_views.ColoredButton
-            android:id="@+id/facebook_button"
-            android:layout_width="164dp"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:drawableStart="@drawable/ic_facebook_24dp"
-            android:text="@string/facebook"
-            custom:color_resource="@color/white" />
-
-        <bg.devlabs.gamescorer.ui.custom_views.ColoredButton
-            android:id="@+id/twitter_button"
-            android:layout_width="164dp"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:drawableStart="@drawable/ic_twitter_24dp"
-            android:text="@string/twitter"
-            custom:color_resource="@color/white" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true">
 
         <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/connect_with_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/dont_have_an_account"
+            android:text="@string/or_connect_with"
             android:textColor="@color/black" />
 
-        <bg.devlabs.gamescorer.ui.custom_views.ColoredButton
-            android:id="@+id/sign_up_button"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:text="@string/sign_up"
-            custom:color_resource="@color/white" />
+            android:orientation="vertical">
+
+            <bg.devlabs.gamescorer.ui.custom_views.ColoredButton
+                android:id="@+id/google_button"
+                android:layout_width="164dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:drawableStart="@drawable/ic_google_24dp"
+                android:text="@string/google"
+                custom:color_resource="@color/white" />
+
+            <bg.devlabs.gamescorer.ui.custom_views.ColoredButton
+                android:id="@+id/facebook_button"
+                android:layout_width="164dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:drawableStart="@drawable/ic_facebook_24dp"
+                android:text="@string/facebook"
+                custom:color_resource="@color/white" />
+
+            <bg.devlabs.gamescorer.ui.custom_views.ColoredButton
+                android:id="@+id/twitter_button"
+                android:layout_width="164dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:drawableStart="@drawable/ic_twitter_24dp"
+                android:text="@string/twitter"
+                custom:color_resource="@color/white" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/dont_have_an_account"
+                android:textColor="@color/black" />
+
+            <bg.devlabs.gamescorer.ui.custom_views.ColoredButton
+                android:id="@+id/sign_up_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="@string/sign_up"
+                custom:color_resource="@color/white" />
+        </LinearLayout>
     </LinearLayout>
-</RelativeLayout>
+</ScrollView>
