@@ -1,5 +1,8 @@
 package bg.devlabs.gamescorer.data.db
 
+import bg.devlabs.gamescorer.data.db.model.User
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount
+import com.google.firebase.database.DatabaseReference
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -10,9 +13,11 @@ import javax.inject.Singleton
  * slavi@devlabs.bg
  */
 @Singleton
-class AppRealtimeDbHelper @Inject constructor(): RealtimeDbHelper {
+class AppRealtimeDbHelper @Inject constructor(private val database: DatabaseReference)
+    : RealtimeDbHelper {
 
-    override fun writeUserInfo() {
-
+    override fun writeUserInfo(signInAccount: GoogleSignInAccount?) {
+        val user = User(signInAccount?.displayName, signInAccount?.email, signInAccount?.photoUrl)
+        database.child("users").child(signInAccount?.id).setValue(user)
     }
 }

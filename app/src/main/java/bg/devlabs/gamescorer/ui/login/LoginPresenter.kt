@@ -54,8 +54,7 @@ class LoginPresenter @Inject constructor(view: LoginContract.View)
     override fun handleSignInResult(result: GoogleSignInResult?) {
         if (result!!.isSuccess) {
             // The user is logged in
-            var account = result.signInAccount
-            // TODO: Start new activity
+            dataManager.writeUserInfo(result.signInAccount)
         } else {
             // The user has completed or dismissed the Google Sign In
         }

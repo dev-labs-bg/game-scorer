@@ -3,6 +3,7 @@ package bg.devlabs.gamescorer.data
 import bg.devlabs.gamescorer.data.auth.AuthHelper
 import bg.devlabs.gamescorer.data.db.RealtimeDbHelper
 import bg.devlabs.gamescorer.utils.extensions.prepare
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
@@ -31,7 +32,7 @@ constructor(private val realtimeDbHelper: RealtimeDbHelper,
 
     }
 
-    override fun writeUserInfo() {
-
+    override fun writeUserInfo(signInAccount: GoogleSignInAccount?) {
+        realtimeDbHelper.writeUserInfo(signInAccount)
     }
 }

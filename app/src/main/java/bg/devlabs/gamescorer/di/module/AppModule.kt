@@ -13,6 +13,8 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import dagger.Module
 import dagger.Provides
 import io.reactivex.disposables.CompositeDisposable
@@ -63,4 +65,8 @@ open class AppModule {
 
         return GoogleSignIn.getClient(context, gso)
     }
+
+    @Provides
+    @Singleton
+    fun provideFirebaseDatabase(): DatabaseReference = FirebaseDatabase.getInstance().reference
 }
