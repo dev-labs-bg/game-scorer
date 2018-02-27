@@ -4,6 +4,7 @@ import android.app.AlertDialog
 import android.app.Dialog
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.widget.Toast
 import bg.devlabs.gamescorer.R
 import bg.devlabs.gamescorer.di.component.ActivityComponent
 import bg.devlabs.gamescorer.utils.extensions.show
@@ -17,6 +18,7 @@ abstract class BaseActivity : AppCompatActivity(), BaseContract.View {
 
     protected var activityComponent: ActivityComponent? = null
     private lateinit var progressDialog: Dialog
+    private var toast: Toast? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,5 +55,11 @@ abstract class BaseActivity : AppCompatActivity(), BaseContract.View {
                 .setMessage(getString(messageResId))
                 .setPositiveButton(R.string.dismiss) { _, _ -> }
                 .show()
+    }
+
+    override fun showToast(messageResId: Int) {
+        toast?.cancel()
+        toast = Toast.makeText(this, messageResId, Toast.LENGTH_SHORT)
+        toast?.show()
     }
 }

@@ -40,23 +40,24 @@ class LoginActivity : InjectionBaseActivity(), LoginContract.View,
     }
 
     private fun initButtonListeners() {
-        loginButton.setOnClickListener {
-            presenter.onLoginButtonClicked(usernameView.text, passwordView.text)
+        login_button.setOnClickListener {
+            presenter.onLoginButtonClicked(username_edit_text.text.toString(),
+                    password_edit_text.text.toString())
         }
 
-        googleButton.setOnClickListener {
+        google_button.setOnClickListener {
             presenter.onGoogleButtonClicked()
         }
 
-        facebookButton.setOnClickListener {
+        facebook_button.setOnClickListener {
             presenter.onFacebookButtonClicked()
         }
 
-        twitterButton.setOnClickListener {
+        twitter_button.setOnClickListener {
             presenter.onTwitterButtonClicked()
         }
 
-        signUpButton.setOnClickListener {
+        sign_up_button.setOnClickListener {
             presenter.onSignUpButtonClicked()
         }
     }
@@ -75,13 +76,13 @@ class LoginActivity : InjectionBaseActivity(), LoginContract.View,
     }
 
     override fun fieldsValid(): Boolean {
-        if (usernameView.text.isEmpty()) {
-            usernameView.setError(getString(R.string.username_empty_warning))
+        if (username_edit_text.text.isEmpty()) {
+            showToast(R.string.username_empty_warning)
             return false
         }
 
-        if (passwordView.text.isEmpty()) {
-            passwordView.setError(getString(R.string.password_empty_warning))
+        if (password_edit_text.text.isEmpty()) {
+            showToast(R.string.password_empty_warning)
             return false
         }
 

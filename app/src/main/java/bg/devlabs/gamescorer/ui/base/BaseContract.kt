@@ -13,6 +13,7 @@ interface BaseContract {
         fun dismissProgress()
         fun showInfoDialog(message: String)
         fun showInfoDialog(messageResId: Int)
+        fun showToast(messageResId: Int)
     }
 
     interface Presenter {
