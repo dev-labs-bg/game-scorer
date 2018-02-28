@@ -1,9 +1,10 @@
 package bg.devlabs.gamescorer.data.auth
 
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
-import io.reactivex.Observable
+import io.reactivex.Single
 
 
 /**
@@ -14,7 +15,7 @@ import io.reactivex.Observable
 interface AuthHelper {
     val googleSignInClient: GoogleSignInClient
 
-    fun signInEmail(email: String, password: String): Observable<Task<AuthResult>>
+    fun signInEmail(email: String, password: String): Single<Task<AuthResult>>
 
-    fun signInGoogle()
+    fun signInGoogle(signInAccount: GoogleSignInAccount?): Single<Task<AuthResult>>
 }

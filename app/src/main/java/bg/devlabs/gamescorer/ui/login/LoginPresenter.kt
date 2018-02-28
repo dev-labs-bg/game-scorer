@@ -15,24 +15,24 @@ class LoginPresenter @Inject constructor(view: LoginContract.View)
     : BasePresenter<LoginContract.View>(view), LoginContract.Presenter {
 
     override fun onLoginButtonClicked(email: String, password: String) {
-        if (view!!.fieldsValid()) {
-            signInFirebase(email, password)
+        view?.let {
+            if (it.fieldsValid()) {
+                signInFirebase(email, password)
+            }
         }
     }
 
     private fun signInFirebase(email: String, password: String) {
         compositeDisposable.add(dataManager.signInEmail(email, password)
                 .subscribe({
-
+                    // TODO: Open app's Main screen
                 }, {
-                    view!!.showInfoDialog(it.localizedMessage)
+                    view?.showInfoDialog(it.localizedMessage)
                 }))
     }
 
     override fun onGoogleButtonClicked() {
-        view!!.startGoogleLoginActivity(dataManager.googleSignInClient)
-
-        dataManager.signInGoogle()
+        view?.startGoogleLoginActivity(dataManager.googleSignInClient)
     }
 
     override fun onFacebookButtonClicked() {
@@ -52,11 +52,19 @@ class LoginPresenter @Inject constructor(view: LoginContract.View)
     }
 
     override fun handleSignInResult(result: GoogleSignInResult?) {
-        if (result!!.isSuccess) {
-            // The user is logged in
-            dataManager.writeUserInfo(result.signInAccount)
-        } else {
-            // The user has completed or dismissed the Google Sign In
+        result?.let {
+            if (result.isSuccess) {
+                compositeDisposable.add(dataManager.signInGoogle(result.signInAccount)
+                        .subscribe({
+                            // TODO: Open app's Main screen
+                        }, {
+                            view?.showInfoDialog(it.localizedMessage)
+                        }))
+                // The user is logged in
+                dataManager.writeUserInfo(result.signInAccount)
+            } else {
+                // There is an error or the user cancelled the login process
+            }
         }
     }
 }

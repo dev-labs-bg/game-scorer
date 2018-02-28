@@ -17,7 +17,9 @@ class AppRealtimeDbHelper @Inject constructor(private val database: DatabaseRefe
     : RealtimeDbHelper {
 
     override fun writeUserInfo(signInAccount: GoogleSignInAccount?) {
-        val user = User(signInAccount?.displayName, signInAccount?.email, signInAccount?.photoUrl)
+        val user = User(signInAccount?.displayName,
+                signInAccount?.email,
+                signInAccount?.photoUrl.toString())
         database.child("users").child(signInAccount?.id).setValue(user)
     }
 }

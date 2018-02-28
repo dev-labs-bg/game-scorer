@@ -7,7 +7,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
-import io.reactivex.Observable
+import io.reactivex.Single
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -24,12 +24,12 @@ constructor(private val realtimeDbHelper: RealtimeDbHelper,
     override val googleSignInClient: GoogleSignInClient
         get() = authHelper.googleSignInClient
 
-    override fun signInEmail(email: String, password: String): Observable<Task<AuthResult>> {
+    override fun signInEmail(email: String, password: String): Single<Task<AuthResult>> {
         return authHelper.signInEmail(email, password).prepare()
     }
 
-    override fun signInGoogle() {
-
+    override fun signInGoogle(signInAccount: GoogleSignInAccount?): Single<Task<AuthResult>> {
+        return authHelper.signInGoogle(signInAccount).prepare()
     }
 
     override fun writeUserInfo(signInAccount: GoogleSignInAccount?) {
