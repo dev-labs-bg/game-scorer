@@ -1,6 +1,6 @@
 package bg.devlabs.gamescorer.data.db
 
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount
+import io.reactivex.Single
 
 
 /**
@@ -9,5 +9,10 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount
  * slavi@devlabs.bg
  */
 interface RealtimeDbHelper {
-    fun writeUserInfo(signInAccount: GoogleSignInAccount?)
+    fun writeUserInfo(displayName: String?,
+                      email: String?,
+                      photoUrl: String?,
+                      tokenMap: HashMap<String, String?>)
+
+    fun getCurrentUserTokenId(): Single<String?>
 }

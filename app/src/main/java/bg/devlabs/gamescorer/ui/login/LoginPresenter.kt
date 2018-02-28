@@ -2,7 +2,12 @@ package bg.devlabs.gamescorer.ui.login
 
 import bg.devlabs.gamescorer.ui.base.BasePresenter
 import com.google.android.gms.auth.api.signin.GoogleSignInResult
+import com.google.android.gms.tasks.Task
+import com.google.firebase.auth.AuthResult
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
+import io.reactivex.Single
+import io.reactivex.functions.BiFunction
 import javax.inject.Inject
 
 
@@ -36,9 +41,12 @@ class LoginPresenter @Inject constructor(view: LoginContract.View)
     }
 
     override fun onFacebookButtonClicked() {
-        val dbReference = FirebaseDatabase.getInstance().getReference("notifications")
-                .child("invitations").push()
-        dbReference.setValue(Notification("Title", "Author"))
+        val currentUser = FirebaseAuth.getInstance().currentUser
+        FirebaseDatabase.getInstance().reference
+                .child("users")
+                .child(currentUser?.uid)
+                .child("invitations")
+                .setValue(Notification("Title", "Author"))
     }
 
     data class Notification(val title: String, val author: String)
@@ -54,14 +62,30 @@ class LoginPresenter @Inject constructor(view: LoginContract.View)
     override fun handleSignInResult(result: GoogleSignInResult?) {
         result?.let {
             if (result.isSuccess) {
-                compositeDisposable.add(dataManager.signInGoogle(result.signInAccount)
-                        .subscribe({
-                            // TODO: Open app's Main screen
-                        }, {
-                            view?.showInfoDialog(it.localizedMessage)
-                        }))
                 // The user is logged in
-                dataManager.writeUserInfo(result.signInAccount)
+                val signInAccount = result.signInAccount
+                compositeDisposable.add(
+                        Single.zip(dataManager.signInGoogle(signInAccount),
+                                dataManager.getCurrentUserTokenId(),
+                                BiFunction { task: Task<AuthResult>, tokenResult: String? ->
+                                    val displayName = signInAccount?.displayName
+                                    val email = signInAccount?.email
+                                    val photoUrl = signInAccount?.photoUrl
+                                    val tokenMap = HashMap<String, String?>()
+                                    tokenMap["token_id"] = tokenResult
+                                    dataManager.writeUserInfo(displayName, email, photoUrl.toString(),
+                                            tokenMap)
+                                })
+                                .subscribe()
+                )
+//                compositeDisposable.add(dataManager.signInGoogle(result.signInAccount)
+//                        .subscribe({
+//                            // TODO: Open app's Main screen
+//                            // Write the user to the database
+//                            dataManager.writeUserInfo(result.signInAccount)
+//                        }, {
+//                            view?.showInfoDialog(it.localizedMessage)
+//                        }))
             } else {
                 // There is an error or the user cancelled the login process
             }

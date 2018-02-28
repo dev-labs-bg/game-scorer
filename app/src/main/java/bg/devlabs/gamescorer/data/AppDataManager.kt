@@ -32,7 +32,15 @@ constructor(private val realtimeDbHelper: RealtimeDbHelper,
         return authHelper.signInGoogle(signInAccount).prepare()
     }
 
-    override fun writeUserInfo(signInAccount: GoogleSignInAccount?) {
-        realtimeDbHelper.writeUserInfo(signInAccount)
+    override fun writeUserInfo(displayName: String?,
+                               email: String?,
+                               photoUrl: String?,
+                               tokenMap: HashMap<String, String?>) {
+
+        realtimeDbHelper.writeUserInfo(displayName, email, photoUrl, tokenMap)
+    }
+
+    override fun getCurrentUserTokenId(): Single<String?> {
+        return realtimeDbHelper.getCurrentUserTokenId()
     }
 }

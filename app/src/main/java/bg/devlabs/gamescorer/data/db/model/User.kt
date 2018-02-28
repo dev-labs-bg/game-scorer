@@ -12,12 +12,15 @@ class User {
     var displayName: String? = null
     var email: String? = null
     var photoUrl: String? = null
+    var tokenMap: HashMap<String, String?>? = null
 
     constructor()
 
-    constructor(displayName: String?, email: String?, photoUrl: String?) {
+    constructor(displayName: String?, email: String?, photoUrl: String?,
+                tokenMap: HashMap<String, String?>) {
         this.displayName = displayName
         this.email = email
         this.photoUrl = photoUrl
+        this.tokenMap = tokenMap
     }
 }
