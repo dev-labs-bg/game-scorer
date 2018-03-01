@@ -1,10 +1,11 @@
 package bg.devlabs.gamescorer.ui.login
 
-import bg.devlabs.gamescorer.data.db.model.Invitation
+import android.content.Intent
 import bg.devlabs.gamescorer.ui.base.BasePresenter
+import bg.devlabs.gamescorer.ui.main.MainActivity
+import bg.devlabs.gamescorer.utils.Constants.RC_SIGN_IN
+import com.google.android.gms.auth.api.Auth
 import com.google.android.gms.auth.api.signin.GoogleSignInResult
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.FirebaseDatabase
 import javax.inject.Inject
 
 
@@ -38,14 +39,18 @@ class LoginPresenter @Inject constructor(view: LoginContract.View)
     }
 
     override fun onFacebookButtonClicked() {
-        val currentUser = FirebaseAuth.getInstance().currentUser
-        FirebaseDatabase.getInstance().reference
-                .child("users")
-                .child(currentUser?.uid)
-                .child("invitations")
-                // TODO: Consider changing the invitation id instead of passing a different one every time
-                .push()
-                .setValue(Invitation("Invitation text", currentUser?.uid))
+        compositeDisposable.add(dataManager.initFacebookSignIn()
+                .flatMap {
+                    dataManager.signInFacebook(it.accessToken)
+                }
+                .subscribe({
+                    // TODO: Start Main Activity
+
+                    view?.startActivity(MainActivity::class.java)
+                }, {
+                    view?.showToast(it.localizedMessage)
+                })
+        )
     }
 
     override fun onTwitterButtonClicked() {
@@ -56,25 +61,31 @@ class LoginPresenter @Inject constructor(view: LoginContract.View)
 
     }
 
-    override fun handleSignInResult(result: GoogleSignInResult?) {
+    override fun handleOnActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
+        if (requestCode == RC_SIGN_IN) {
+            val result = Auth.GoogleSignInApi.getSignInResultFromIntent(data)
+            handleGoogleSignIn(result)
+        } else { // Facebook login
+            dataManager.handleFacebookSignIn(requestCode, resultCode, data)
+        }
+    }
+
+    private fun handleGoogleSignIn(result: GoogleSignInResult?) {
         result?.let {
             if (result.isSuccess) {
                 // The user is logged in
                 val signInAccount = result.signInAccount
                 compositeDisposable.add(
                         dataManager.signInGoogle(signInAccount).subscribe({
-                            if (it.isSuccessful) {
-                                val displayName = signInAccount?.displayName
-                                val email = signInAccount?.email
-                                val photoUrl = signInAccount?.photoUrl
-                                // TODO: Open app's Main screen
-                                // Write the user to the database
-                                dataManager.writeUserInfo(displayName,
-                                        email,
-                                        photoUrl.toString())
-                            } else {
-                                // Authentication error
-                            }
+                            val displayName = signInAccount?.displayName
+                            val email = signInAccount?.email
+                            val photoUrl = signInAccount?.photoUrl
+                            // TODO: Open app's Main screen
+                            // Write the user to the database
+                            dataManager.writeUserInfo(displayName,
+                                    email,
+                                    photoUrl.toString())
                         }, {
 
                         })

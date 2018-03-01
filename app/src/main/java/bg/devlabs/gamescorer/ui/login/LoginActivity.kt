@@ -4,6 +4,9 @@ import android.content.Intent
 import android.os.Bundle
 import bg.devlabs.gamescorer.R
 import bg.devlabs.gamescorer.ui.base.InjectionBaseActivity
+import bg.devlabs.gamescorer.utils.Constants.FACEBOOK_READ_PERMISSIONS
+import bg.devlabs.gamescorer.utils.Constants.RC_SIGN_IN
+import com.facebook.login.LoginManager
 import com.google.android.gms.auth.api.Auth
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -15,8 +18,6 @@ import javax.inject.Inject
 
 class LoginActivity : InjectionBaseActivity(), LoginContract.View,
         GoogleApiClient.OnConnectionFailedListener {
-
-    private val RC_SIGN_IN = 9001
 
     @Inject
     lateinit var presenter: LoginContract.Presenter
@@ -31,12 +32,7 @@ class LoginActivity : InjectionBaseActivity(), LoginContract.View,
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-
-        // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
-        if (requestCode == RC_SIGN_IN) {
-            val result = Auth.GoogleSignInApi.getSignInResultFromIntent(data)
-            presenter.handleSignInResult(result)
-        }
+        presenter.handleOnActivityResult(requestCode, resultCode, data)
     }
 
     private fun initButtonListeners() {
@@ -50,6 +46,7 @@ class LoginActivity : InjectionBaseActivity(), LoginContract.View,
         }
 
         facebook_button.setOnClickListener {
+            LoginManager.getInstance().logInWithReadPermissions(this, FACEBOOK_READ_PERMISSIONS)
             presenter.onFacebookButtonClicked()
         }
 

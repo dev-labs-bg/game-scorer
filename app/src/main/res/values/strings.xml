@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">Game Scorer</string>
     <string name="default_notification_channel_id">game_scorer_CH_01</string>
+    <string name="facebook_app_id">208960752990232</string>
+    <string name="fb_login_protocol_scheme">fb208960752990232</string>
+
     <string name="signing_you_in">Trying to sign you in. Please wait…</string>
     <string name="email">Email</string>
     <string name="facebook">Facebook</string>

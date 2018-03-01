@@ -1,9 +1,9 @@
 package bg.devlabs.gamescorer.ui.login
 
+import android.content.Intent
 import bg.devlabs.gamescorer.ui.base.BaseContract
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
-import com.google.android.gms.auth.api.signin.GoogleSignInResult
 import com.google.android.gms.common.api.GoogleApiClient
 
 
@@ -29,6 +29,6 @@ interface LoginContract {
         fun onFacebookButtonClicked()
         fun onTwitterButtonClicked()
         fun onSignUpButtonClicked()
-        fun handleSignInResult(result: GoogleSignInResult?)
+        fun handleOnActivityResult(requestCode: Int, resultCode: Int, data: Intent?)
     }
 }

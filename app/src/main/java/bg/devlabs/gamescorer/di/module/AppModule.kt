@@ -9,6 +9,7 @@ import bg.devlabs.gamescorer.data.auth.AppAuthHelper
 import bg.devlabs.gamescorer.data.auth.AuthHelper
 import bg.devlabs.gamescorer.data.db.AppRealtimeDbHelper
 import bg.devlabs.gamescorer.data.db.RealtimeDbHelper
+import com.facebook.CallbackManager
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -69,4 +70,8 @@ open class AppModule {
     @Provides
     @Singleton
     fun provideFirebaseDatabase(): DatabaseReference = FirebaseDatabase.getInstance().reference
+
+    @Provides
+    @Singleton
+    fun provideFacebookCallbackManager(): CallbackManager = CallbackManager.Factory.create()
 }

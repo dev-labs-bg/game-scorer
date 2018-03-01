@@ -1,5 +1,8 @@
 package bg.devlabs.gamescorer.data.auth
 
+import android.content.Intent
+import com.facebook.AccessToken
+import com.facebook.login.LoginResult
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.tasks.Task
@@ -18,4 +21,10 @@ interface AuthHelper {
     fun signInEmail(email: String, password: String): Single<Task<AuthResult>>
 
     fun signInGoogle(signInAccount: GoogleSignInAccount?): Single<Task<AuthResult>>
+
+    fun initFacebookSignIn(): Single<LoginResult>
+
+    fun signInFacebook(accessToken: AccessToken): Single<Task<AuthResult>>
+
+    fun handleFacebookSignIn(requestCode: Int, resultCode: Int, data: Intent?)
 }

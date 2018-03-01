@@ -2,6 +2,7 @@ package bg.devlabs.gamescorer.ui.base
 
 import android.app.AlertDialog
 import android.app.Dialog
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.widget.Toast
@@ -58,8 +59,16 @@ abstract class BaseActivity : AppCompatActivity(), BaseContract.View {
     }
 
     override fun showToast(messageResId: Int) {
+        showToast(getString(messageResId))
+    }
+
+    override fun showToast(message: String) {
         toast?.cancel()
-        toast = Toast.makeText(this, messageResId, Toast.LENGTH_SHORT)
+        toast = Toast.makeText(this, message, Toast.LENGTH_SHORT)
         toast?.show()
+    }
+
+    override fun startActivity(targetActivity: Class<*>) {
+        startActivity(Intent(this, targetActivity))
     }
 }

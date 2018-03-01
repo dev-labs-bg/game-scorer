@@ -13,7 +13,9 @@ interface BaseContract {
         fun dismissProgress()
         fun showInfoDialog(message: String)
         fun showInfoDialog(messageResId: Int)
+        fun showToast(message: String)
         fun showToast(messageResId: Int)
+        fun startActivity(targetActivity: Class<*>)
     }
 
     interface Presenter {
