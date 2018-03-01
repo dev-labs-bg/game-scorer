@@ -3,6 +3,7 @@ package bg.devlabs.gamescorer.data.db
 import bg.devlabs.gamescorer.data.db.model.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
+import com.google.firebase.iid.FirebaseInstanceId
 import io.reactivex.Single
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -20,10 +21,10 @@ class AppRealtimeDbHelper @Inject constructor(private val database: DatabaseRefe
 
     override fun writeUserInfo(displayName: String?,
                                email: String?,
-                               photoUrl: String?,
-                               tokenMap: HashMap<String, String?>) {
-
-        val user = User(displayName, email, photoUrl, tokenMap)
+                               photoUrl: String?) {
+        // TODO: Remove this token on user logout
+        val tokenId = FirebaseInstanceId.getInstance().token
+        val user = User(displayName, email, photoUrl, tokenId)
         database.child("users").child(firebaseAuth.currentUser?.uid).setValue(user)
     }
 

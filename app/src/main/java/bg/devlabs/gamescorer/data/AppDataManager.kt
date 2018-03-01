@@ -2,7 +2,7 @@ package bg.devlabs.gamescorer.data
 
 import bg.devlabs.gamescorer.data.auth.AuthHelper
 import bg.devlabs.gamescorer.data.db.RealtimeDbHelper
-import bg.devlabs.gamescorer.utils.extensions.prepare
+import bg.devlabs.gamescorer.utils.prepare
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.tasks.Task
@@ -34,10 +34,9 @@ constructor(private val realtimeDbHelper: RealtimeDbHelper,
 
     override fun writeUserInfo(displayName: String?,
                                email: String?,
-                               photoUrl: String?,
-                               tokenMap: HashMap<String, String?>) {
+                               photoUrl: String?) {
 
-        realtimeDbHelper.writeUserInfo(displayName, email, photoUrl, tokenMap)
+        realtimeDbHelper.writeUserInfo(displayName, email, photoUrl)
     }
 
     override fun getCurrentUserTokenId(): Single<String?> {

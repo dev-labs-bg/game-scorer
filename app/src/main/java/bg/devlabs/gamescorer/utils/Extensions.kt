@@ -1,4 +1,4 @@
-package bg.devlabs.gamescorer.utils.extensions
+package bg.devlabs.gamescorer.utils
 
 import android.app.Dialog
 import bg.devlabs.gamescorer.R

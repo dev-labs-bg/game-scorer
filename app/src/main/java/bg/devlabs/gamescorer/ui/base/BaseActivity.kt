@@ -7,7 +7,7 @@ import android.support.v7.app.AppCompatActivity
 import android.widget.Toast
 import bg.devlabs.gamescorer.R
 import bg.devlabs.gamescorer.di.component.ActivityComponent
-import bg.devlabs.gamescorer.utils.extensions.show
+import bg.devlabs.gamescorer.utils.show
 
 /**
  * Created by Slavi Petrov on 10.08.2017

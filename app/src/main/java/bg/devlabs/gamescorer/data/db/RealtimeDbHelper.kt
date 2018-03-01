@@ -11,8 +11,7 @@ import io.reactivex.Single
 interface RealtimeDbHelper {
     fun writeUserInfo(displayName: String?,
                       email: String?,
-                      photoUrl: String?,
-                      tokenMap: HashMap<String, String?>)
+                      photoUrl: String?)
 
     fun getCurrentUserTokenId(): Single<String?>
 }

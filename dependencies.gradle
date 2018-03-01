@@ -10,5 +10,5 @@ ext.versions = [
         firebase       : '11.8.0',
         dagger         : '2.14.1',
         rx_java        : '2.1.9',
-        rx_android     : '2.0.1'
+        rx_android     : '2.0.2'
 ]

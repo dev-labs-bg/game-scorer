@@ -1,13 +1,10 @@
 package bg.devlabs.gamescorer.ui.login
 
+import bg.devlabs.gamescorer.data.db.model.Invitation
 import bg.devlabs.gamescorer.ui.base.BasePresenter
 import com.google.android.gms.auth.api.signin.GoogleSignInResult
-import com.google.android.gms.tasks.Task
-import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
-import io.reactivex.Single
-import io.reactivex.functions.BiFunction
 import javax.inject.Inject
 
 
@@ -46,10 +43,10 @@ class LoginPresenter @Inject constructor(view: LoginContract.View)
                 .child("users")
                 .child(currentUser?.uid)
                 .child("invitations")
-                .setValue(Notification("Title", "Author"))
+                // TODO: Consider changing the invitation id instead of passing a different one every time
+                .push()
+                .setValue(Invitation("Invitation text", currentUser?.uid))
     }
-
-    data class Notification(val title: String, val author: String)
 
     override fun onTwitterButtonClicked() {
 
@@ -65,27 +62,23 @@ class LoginPresenter @Inject constructor(view: LoginContract.View)
                 // The user is logged in
                 val signInAccount = result.signInAccount
                 compositeDisposable.add(
-                        Single.zip(dataManager.signInGoogle(signInAccount),
-                                dataManager.getCurrentUserTokenId(),
-                                BiFunction { task: Task<AuthResult>, tokenResult: String? ->
-                                    val displayName = signInAccount?.displayName
-                                    val email = signInAccount?.email
-                                    val photoUrl = signInAccount?.photoUrl
-                                    val tokenMap = HashMap<String, String?>()
-                                    tokenMap["token_id"] = tokenResult
-                                    dataManager.writeUserInfo(displayName, email, photoUrl.toString(),
-                                            tokenMap)
-                                })
-                                .subscribe()
+                        dataManager.signInGoogle(signInAccount).subscribe({
+                            if (it.isSuccessful) {
+                                val displayName = signInAccount?.displayName
+                                val email = signInAccount?.email
+                                val photoUrl = signInAccount?.photoUrl
+                                // TODO: Open app's Main screen
+                                // Write the user to the database
+                                dataManager.writeUserInfo(displayName,
+                                        email,
+                                        photoUrl.toString())
+                            } else {
+                                // Authentication error
+                            }
+                        }, {
+
+                        })
                 )
-//                compositeDisposable.add(dataManager.signInGoogle(result.signInAccount)
-//                        .subscribe({
-//                            // TODO: Open app's Main screen
-//                            // Write the user to the database
-//                            dataManager.writeUserInfo(result.signInAccount)
-//                        }, {
-//                            view?.showInfoDialog(it.localizedMessage)
-//                        }))
             } else {
                 // There is an error or the user cancelled the login process
             }
