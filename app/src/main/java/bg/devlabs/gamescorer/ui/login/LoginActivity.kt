@@ -59,7 +59,7 @@ class LoginActivity : InjectionBaseActivity(), LoginContract.View,
         twitter_button.callback = presenter.handleTwitterSignIn()
 
         sign_up_button.setOnClickListener {
-            presenter.onSignUpButtonClicked()
+            startActivity()
         }
     }
 

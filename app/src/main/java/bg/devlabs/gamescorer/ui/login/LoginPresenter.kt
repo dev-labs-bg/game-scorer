@@ -63,14 +63,6 @@ class LoginPresenter @Inject constructor(view: LoginContract.View)
         )
     }
 
-    override fun onTwitterButtonClicked() {
-//        dataManager.initTwitterSignIn()
-    }
-
-    override fun onSignUpButtonClicked() {
-
-    }
-
     override fun handleOnActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
         if (requestCode == RC_SIGN_IN_GOOGLE) {

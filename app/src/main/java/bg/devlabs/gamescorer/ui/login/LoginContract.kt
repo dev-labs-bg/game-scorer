@@ -29,8 +29,6 @@ interface LoginContract {
         fun onLoginButtonClicked(email: String, password: String)
         fun onGoogleButtonClicked()
         fun onFacebookButtonClicked()
-        fun onTwitterButtonClicked()
-        fun onSignUpButtonClicked()
         fun handleOnActivityResult(requestCode: Int, resultCode: Int, data: Intent?)
         fun handleTwitterSignIn(): Callback<TwitterSession>?
     }
