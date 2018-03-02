@@ -45,11 +45,17 @@ class LoginPresenter @Inject constructor(view: LoginContract.View)
 
     override fun onFacebookButtonClicked() {
         compositeDisposable.add(dataManager.initFacebookSignIn()
-                .flatMap {
-                    dataManager.signInFacebook(it.accessToken)
+                .flatMap { loginResult ->
+                    dataManager.signInFacebook(loginResult.accessToken)
+                }
+                .map {
+                    val user = it.result.user
+                    dataManager.writeUserInfo(user.displayName,
+                            user.email,
+                            user.photoUrl.toString(),
+                            AuthType.FACEBOOK)
                 }
                 .subscribe({
-                    // TODO: Add writing the user to the database
                     view?.startActivity(MainActivity::class.java)
                 }, {
                     view?.showToast(it.localizedMessage)
