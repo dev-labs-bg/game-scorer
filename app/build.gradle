@@ -55,6 +55,10 @@ dependencies {
     implementation "io.reactivex.rxjava2:rxandroid:$versions.rx_android"
     // Facebook login
     implementation "com.facebook.android:facebook-login:$versions.facebook"
+    // Twitter login
+    implementation("com.twitter.sdk.android:twitter-core:$versions.twitter") {
+        transitive = true
+    }
 }
 
 

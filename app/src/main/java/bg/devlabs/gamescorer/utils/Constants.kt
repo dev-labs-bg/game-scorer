@@ -7,6 +7,7 @@ package bg.devlabs.gamescorer.utils
  * slavi@devlabs.bg
  */
 object Constants {
-    const val RC_SIGN_IN = 9001
+    const val RC_SIGN_IN_GOOGLE = 9001
+    const val RC_SIGN_IN_TWITTER = 140
     val FACEBOOK_READ_PERMISSIONS = mutableListOf("email", "public_profile")
 }

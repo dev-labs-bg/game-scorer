@@ -7,6 +7,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
+import com.twitter.sdk.android.core.TwitterSession
 import io.reactivex.Single
 
 
@@ -27,4 +28,6 @@ interface AuthHelper {
     fun signInFacebook(accessToken: AccessToken): Single<Task<AuthResult>>
 
     fun handleFacebookSignIn(requestCode: Int, resultCode: Int, data: Intent?)
+
+    fun signInTwitter(session: TwitterSession?): Single<Task<AuthResult>>
 }

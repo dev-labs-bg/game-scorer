@@ -11,5 +11,6 @@ ext.versions = [
         dagger         : '2.14.1',
         rx_java        : '2.1.9',
         rx_android     : '2.0.2',
-        facebook       : '4.30.0'
+        facebook       : '4.30.0',
+        twitter        : '3.1.1'
 ]

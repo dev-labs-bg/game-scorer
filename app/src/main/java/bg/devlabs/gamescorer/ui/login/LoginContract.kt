@@ -5,6 +5,8 @@ import bg.devlabs.gamescorer.ui.base.BaseContract
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.GoogleApiClient
+import com.twitter.sdk.android.core.Callback
+import com.twitter.sdk.android.core.TwitterSession
 
 
 /**
@@ -30,5 +32,6 @@ interface LoginContract {
         fun onTwitterButtonClicked()
         fun onSignUpButtonClicked()
         fun handleOnActivityResult(requestCode: Int, resultCode: Int, data: Intent?)
+        fun handleTwitterSignIn(): Callback<TwitterSession>?
     }
 }

@@ -3,6 +3,7 @@ package bg.devlabs.gamescorer.data
 import android.content.Intent
 import bg.devlabs.gamescorer.data.auth.AuthHelper
 import bg.devlabs.gamescorer.data.db.RealtimeDbHelper
+import bg.devlabs.gamescorer.data.db.model.AuthType
 import bg.devlabs.gamescorer.data.db.model.Invitation
 import bg.devlabs.gamescorer.utils.prepare
 import com.facebook.AccessToken
@@ -13,6 +14,7 @@ import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
+import com.twitter.sdk.android.core.TwitterSession
 import io.reactivex.Single
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -43,18 +45,23 @@ constructor(private val realtimeDbHelper: RealtimeDbHelper,
     }
 
     override fun signInFacebook(accessToken: AccessToken): Single<Task<AuthResult>> {
-        return authHelper.signInFacebook(accessToken)
+        return authHelper.signInFacebook(accessToken).prepare()
     }
 
     override fun handleFacebookSignIn(requestCode: Int, resultCode: Int, data: Intent?) {
         authHelper.handleFacebookSignIn(requestCode, resultCode, data)
     }
 
+    override fun signInTwitter(session: TwitterSession?): Single<Task<AuthResult>> {
+        return authHelper.signInTwitter(session).prepare()
+    }
+
     override fun writeUserInfo(displayName: String?,
                                email: String?,
-                               photoUrl: String?) {
+                               photoUrl: String?,
+                               authType: AuthType?) {
 
-        realtimeDbHelper.writeUserInfo(displayName, email, photoUrl)
+        realtimeDbHelper.writeUserInfo(displayName, email, photoUrl, authType)
     }
 
     override fun getCurrentUserTokenId(): Single<String?> {

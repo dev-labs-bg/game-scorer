@@ -10,10 +10,8 @@ import com.facebook.login.LoginResult
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.tasks.Task
-import com.google.firebase.auth.AuthResult
-import com.google.firebase.auth.FacebookAuthProvider
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.GoogleAuthProvider
+import com.google.firebase.auth.*
+import com.twitter.sdk.android.core.TwitterSession
 import io.reactivex.Single
 import javax.inject.Inject
 
@@ -90,6 +88,22 @@ class AppAuthHelper @Inject constructor(private val firebaseAuth: FirebaseAuth,
                             single.onError(Throwable(it.exception?.localizedMessage))
                         }
                     }
+        }
+    }
+
+    override fun signInTwitter(session: TwitterSession?): Single<Task<AuthResult>> {
+        return Single.create { single ->
+            session?.authToken?.let {
+                val credential = TwitterAuthProvider.getCredential(it.token, it.secret)
+                firebaseAuth.signInWithCredential(credential)
+                        .addOnCompleteListener {
+                            if (it.isSuccessful) {
+                                single.onSuccess(it)
+                            } else {
+                                single.onError(Throwable(it.exception?.localizedMessage))
+                            }
+                        }
+            }
         }
     }
 }

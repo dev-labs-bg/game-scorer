@@ -1,5 +1,6 @@
 package bg.devlabs.gamescorer.data.db
 
+import bg.devlabs.gamescorer.data.db.model.AuthType
 import io.reactivex.Single
 
 
@@ -9,9 +10,7 @@ import io.reactivex.Single
  * slavi@devlabs.bg
  */
 interface RealtimeDbHelper {
-    fun writeUserInfo(displayName: String?,
-                      email: String?,
-                      photoUrl: String?)
+    fun writeUserInfo(displayName: String?, email: String?, photoUrl: String?, authType: AuthType?)
 
     fun getCurrentUserTokenId(): Single<String?>
 }

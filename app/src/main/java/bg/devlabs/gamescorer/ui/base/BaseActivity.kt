@@ -3,7 +3,6 @@ package bg.devlabs.gamescorer.ui.base
 import android.app.AlertDialog
 import android.app.Dialog
 import android.content.Intent
-import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.widget.Toast
 import bg.devlabs.gamescorer.R
@@ -20,18 +19,10 @@ abstract class BaseActivity : AppCompatActivity(), BaseContract.View {
     protected var activityComponent: ActivityComponent? = null
     private lateinit var progressDialog: Dialog
     private var toast: Toast? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(getLayoutResId())
-    }
-
     override fun onDestroy() {
         activityComponent = null
         super.onDestroy()
     }
-
-    protected abstract fun getLayoutResId(): Int
 
     override fun showProgress(messageResId: Int) {
         progressDialog = Dialog(this)

@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:animateLayoutChanges="true"
-        android:background="@color/md_blue_300"
+        android:background="@color/md_green_200"
         android:focusableInTouchMode="true"
         android:gravity="center"
         android:orientation="vertical">
@@ -73,6 +73,7 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
             android:orientation="vertical">
 
             <bg.devlabs.gamescorer.ui.custom_views.ColoredButton
@@ -99,17 +100,22 @@
                 android:text="@string/facebook"
                 custom:color_resource="@color/white" />
 
-            <bg.devlabs.gamescorer.ui.custom_views.ColoredButton
+            <!--<bg.devlabs.gamescorer.ui.custom_views.ColoredButton-->
+            <!--android:id="@+id/twitter_button"-->
+            <!--android:layout_width="164dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginBottom="8dp"-->
+            <!--android:layout_marginEnd="8dp"-->
+            <!--android:layout_marginStart="8dp"-->
+            <!--android:layout_marginTop="8dp"-->
+            <!--android:drawableStart="@drawable/ic_twitter_24dp"-->
+            <!--android:text="@string/twitter"-->
+            <!--custom:color_resource="@color/white" />-->
+
+            <com.twitter.sdk.android.core.identity.TwitterLoginButton
                 android:id="@+id/twitter_button"
-                android:layout_width="164dp"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:drawableStart="@drawable/ic_twitter_24dp"
-                android:text="@string/twitter"
-                custom:color_resource="@color/white" />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
         </LinearLayout>
 
         <View

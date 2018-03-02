@@ -5,13 +5,15 @@ import android.os.Bundle
 import bg.devlabs.gamescorer.R
 import bg.devlabs.gamescorer.ui.base.InjectionBaseActivity
 import bg.devlabs.gamescorer.utils.Constants.FACEBOOK_READ_PERMISSIONS
-import bg.devlabs.gamescorer.utils.Constants.RC_SIGN_IN
+import bg.devlabs.gamescorer.utils.Constants.RC_SIGN_IN_GOOGLE
+import bg.devlabs.gamescorer.utils.Constants.RC_SIGN_IN_TWITTER
 import com.facebook.login.LoginManager
 import com.google.android.gms.auth.api.Auth
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.ConnectionResult
 import com.google.android.gms.common.api.GoogleApiClient
+import com.twitter.sdk.android.core.Twitter
 import kotlinx.android.synthetic.main.activity_login.*
 import javax.inject.Inject
 
@@ -22,17 +24,21 @@ class LoginActivity : InjectionBaseActivity(), LoginContract.View,
     @Inject
     lateinit var presenter: LoginContract.Presenter
 
-    override fun getLayoutResId() = R.layout.activity_login
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        activityComponent?.inject(this)
+        Twitter.initialize(this)
+        setContentView(R.layout.activity_login)
         initButtonListeners()
     }
 
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        presenter.handleOnActivityResult(requestCode, resultCode, data)
+        if (requestCode == RC_SIGN_IN_TWITTER) {
+            twitter_button.onActivityResult(requestCode, resultCode, data)
+        } else {
+            presenter.handleOnActivityResult(requestCode, resultCode, data)
+        }
     }
 
     private fun initButtonListeners() {
@@ -50,9 +56,7 @@ class LoginActivity : InjectionBaseActivity(), LoginContract.View,
             presenter.onFacebookButtonClicked()
         }
 
-        twitter_button.setOnClickListener {
-            presenter.onTwitterButtonClicked()
-        }
+        twitter_button.callback = presenter.handleTwitterSignIn()
 
         sign_up_button.setOnClickListener {
             presenter.onSignUpButtonClicked()
@@ -100,6 +104,6 @@ class LoginActivity : InjectionBaseActivity(), LoginContract.View,
     }
 
     override fun startGoogleLoginActivity(googleSignInClient: GoogleSignInClient) {
-        startActivityForResult(googleSignInClient.signInIntent, RC_SIGN_IN)
+        startActivityForResult(googleSignInClient.signInIntent, RC_SIGN_IN_GOOGLE)
     }
 }
