@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import bg.devlabs.gamescorer.R
 import bg.devlabs.gamescorer.ui.base.InjectionBaseActivity
+import bg.devlabs.gamescorer.ui.signup.SignUpActivity
 import bg.devlabs.gamescorer.utils.Constants.FACEBOOK_READ_PERMISSIONS
 import bg.devlabs.gamescorer.utils.Constants.RC_SIGN_IN_GOOGLE
 import bg.devlabs.gamescorer.utils.Constants.RC_SIGN_IN_TWITTER
@@ -30,7 +31,6 @@ class LoginActivity : InjectionBaseActivity(), LoginContract.View,
         setContentView(R.layout.activity_login)
         initButtonListeners()
     }
-
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
@@ -59,7 +59,7 @@ class LoginActivity : InjectionBaseActivity(), LoginContract.View,
         twitter_button.callback = presenter.handleTwitterSignIn()
 
         sign_up_button.setOnClickListener {
-            startActivity()
+            SignUpActivity.start(this)
         }
     }
 

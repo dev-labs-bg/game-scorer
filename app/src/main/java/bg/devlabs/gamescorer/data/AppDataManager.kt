@@ -71,12 +71,14 @@ constructor(private val realtimeDbHelper: RealtimeDbHelper,
     // TODO: Add this when needed to send game invitation
     fun sendInvitation() {
         val currentUser = FirebaseAuth.getInstance().currentUser
-        FirebaseDatabase.getInstance().reference
-                .child("users")
-                .child(currentUser?.uid)
-                .child("invitations")
-                // TODO: Consider changing the invitation id instead of passing a different one every time
-                .push()
-                .setValue(Invitation("Invitation text", currentUser?.uid))
+        currentUser?.uid?.let {
+            FirebaseDatabase.getInstance().reference
+                    .child("users")
+                    .child(it)
+                    .child("invitations")
+                    // TODO: Consider changing the invitation id instead of passing a different one every time
+                    .push()
+                    .setValue(Invitation("Invitation text", it))
+        }
     }
 }

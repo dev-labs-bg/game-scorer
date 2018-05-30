@@ -27,7 +27,9 @@ class AppRealtimeDbHelper @Inject constructor(private val database: DatabaseRefe
         // TODO: Remove this token on user logout
         val tokenId = FirebaseInstanceId.getInstance().token
         val user = User(displayName, email, photoUrl, tokenId, authType)
-        database.child("users").child(firebaseAuth.currentUser?.uid).setValue(user)
+        firebaseAuth.currentUser?.uid?.let {
+            database.child("users").child(it).setValue(user)
+        }
     }
 
     override fun getCurrentUserTokenId(): Single<String?> {
